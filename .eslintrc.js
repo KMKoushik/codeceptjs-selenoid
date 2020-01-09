@@ -16,6 +16,8 @@ module.exports = {
   },
   rules: {
     'no-underscore-dangle': 0,
-    'object-curly-newline':0
+    'object-curly-newline': 0,
+    'no-restricted-syntax': 0,
+    'arrow-body-style': 0,
   },
 };

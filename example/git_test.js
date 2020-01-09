@@ -6,7 +6,7 @@ Scenario('Demo Test Github', (I) => {
   I.fillField('login', 'randomuser_kmk');
   I.fillField('password', 'randomuser_kmk');
   I.click('Sign in');
-  I.see('Incorrect');
+  I.see('Repositories');
 });
 
 Scenario('Demo Test GitLab', (I) => {
