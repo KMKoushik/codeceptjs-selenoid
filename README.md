@@ -8,7 +8,46 @@ Selenoid plugin with video recording capabilities for CodeceptJS
 
 ## How to ?
 
-### 1. Create selenoid container
+### 1. Add browsers.json
+Add browsers.json parallel to codecept conf location. [Refer here](https://aerokube.com/selenoid/latest/#_prepare_configuration) to know more about browsers.json
+
+**You can download the sample json from example.**
+
+### 2. Add plugin configuration in codecept
+
+ Add plugin config to codecept conf. 
+```js
+plugins: {
+    selenoid: {
+      require: '../lib/index',
+      enabled: true,
+      name: 'testnoid',
+      deletePassed: true,
+      autoCreate: true,
+      autoStart: true,
+      sessionTimeout: '30m',
+      enableVideo: true,
+      enableLog: true,
+      additionalParams: '--env TEST=test',
+    },
+  }
+```
+#### Options:
+| Param | Description |
+|--|--|
+| name | Name of the container |
+| deletePassed | Delete video and logs of passed tests |
+| autoCreate | Will automatically create container (Linux only)|
+| autoStart | If disabled start the container manually before running tests |
+| enableVideo | Enable video recording (`video` folder of output)|
+| enableLog | Enable video recording (`logs` folder of output) |
+| additionalParams | [Refer here](https://docs.docker.com/engine/reference/commandline/create/) to know more |
+
+
+
+### 3. Create selenoid container
+**If you are using linux machine, we can handle this for you.**
+
 Run the following command to create one. To know more [refer here](https://aerokube.com/selenoid/latest/#_option_2_start_selenoid_container)
 ```
 docker create                                    \
@@ -21,29 +60,6 @@ docker create                                    \
 aerokube/selenoid:latest-release
 ```
 
-### 2. Start selenoid container
-
-Run the following command
-```
-docker start selenoid
-```
-**Note : If you want to codecept to control this you can skip this step**
-
-### 3. Add plugin configuration in codecept
-
- Add plugin config to codecept conf. If you don't want the video to be recorded set enableVideo as `false`.
-```js
-plugins: {
-    selenoid: {
-      require: '../lib/index',
-      enabled: true,
-      autoStart: true,
-      sessionTimeout: '30m',
-      enableVideo: true,
-      enableLog: true,
-    },
-  }
-```
 
 ## Sample
 
